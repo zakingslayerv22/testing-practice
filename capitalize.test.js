@@ -21,3 +21,7 @@ test("handle number as first letter", () => {
 test("handle empty strings", () => {
   expect(capitalize("")).toBe("");
 });
+
+test("handle sentence input", () => {
+  expect(capitalize("i am Bjorn")).toBe("I am Bjorn");
+});
