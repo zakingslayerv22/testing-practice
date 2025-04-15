@@ -1,7 +1,5 @@
 export class CaesarCipher {
-  constructor(shift, string) {
-    this.shift = shift;
-    this.string = string;
+  constructor() {
     this.plainTextAlphabets = "abcdefghijklmnopqrstuvwxyz";
   }
 
