@@ -15,4 +15,18 @@ export class CaesarCipher {
 
     return cipherTextAlphabets;
   }
+
+  encrypt(shift, string) {
+    const cipherTextAlphabets = this.shiftLetters(shift);
+
+    let encryptedString = "";
+
+    for (let i = 0; i < string.length; i++) {
+      const index = this.plainTextAlphabets.indexOf(string[i]);
+
+      encryptedString += cipherTextAlphabets[index];
+    }
+
+    return encryptedString;
+  }
 }
