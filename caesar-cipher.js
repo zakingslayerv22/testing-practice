@@ -1,30 +1,40 @@
 export class CaesarCipher {
   constructor() {
-    this.plainTextAlphabets = "abcdefghijklmnopqrstuvwxyz";
+    this.plainAlphabetsLower = "abcdefghijklmnopqrstuvwxyz";
+    this.plainAlphabetsUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
 
   shiftLetters(offset) {
-    let cipherTextAlphabets = "";
+    let uppercase = "";
+    let lowercase = "";
 
-    for (let i = 0; i < this.plainTextAlphabets.length; i++) {
-      const shiftedIndex = (offset + i) % this.plainTextAlphabets.length;
-      cipherTextAlphabets += this.plainTextAlphabets[shiftedIndex];
+    for (let i = 0; i < this.plainAlphabetsLower.length; i++) {
+      const shiftedIndex = (offset + i) % this.plainAlphabetsLower.length;
+
+      lowercase += this.plainAlphabetsLower[shiftedIndex];
+      uppercase += this.plainAlphabetsUpper[shiftedIndex];
     }
 
-    return cipherTextAlphabets;
+    return { uppercase, lowercase };
   }
 
   encrypt(shift, string) {
-    const cipherTextAlphabets = this.shiftLetters(shift);
+    const cipherAlphabets = this.shiftLetters(shift);
 
-    let encryptedString = "";
+    let encryptedString = [];
 
     for (let i = 0; i < string.length; i++) {
-      const index = this.plainTextAlphabets.indexOf(string[i]);
+      const letter =
+        this.plainAlphabetsLower.indexOf(string[i]) === -1
+          ? cipherAlphabets.uppercase[
+              this.plainAlphabetsUpper.indexOf(string[i])
+            ]
+          : cipherAlphabets.lowercase[
+              this.plainAlphabetsLower.indexOf(string[i])
+            ];
 
-      encryptedString += cipherTextAlphabets[index];
+      encryptedString.push(letter);
     }
-
-    return encryptedString;
+    return encryptedString.join("");
   }
 }
