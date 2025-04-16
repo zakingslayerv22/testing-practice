@@ -9,3 +9,7 @@ test("encrypt string", () => {
 test("preserve case", () => {
   expect(cipher.encrypt(3, "heLLo")).toBe("khOOr");
 });
+
+test("preserve non-alphabetic characters", () => {
+  expect(cipher.encrypt(3, "Hello, World!")).toBe("Khoor, Zruog!");
+});

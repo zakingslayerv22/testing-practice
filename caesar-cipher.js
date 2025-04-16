@@ -24,14 +24,21 @@ export class CaesarCipher {
     let encryptedString = [];
 
     for (let i = 0; i < string.length; i++) {
-      const letter =
-        this.plainAlphabetsLower.indexOf(string[i]) === -1
-          ? cipherAlphabets.uppercase[
-              this.plainAlphabetsUpper.indexOf(string[i])
-            ]
-          : cipherAlphabets.lowercase[
-              this.plainAlphabetsLower.indexOf(string[i])
-            ];
+      let letter;
+
+      if (this.plainAlphabetsUpper.indexOf(string[i]) !== -1) {
+        letter =
+          cipherAlphabets.uppercase[
+            this.plainAlphabetsUpper.indexOf(string[i])
+          ];
+      } else if (this.plainAlphabetsLower.indexOf(string[i]) !== -1) {
+        letter =
+          cipherAlphabets.lowercase[
+            this.plainAlphabetsLower.indexOf(string[i])
+          ];
+      } else {
+        letter = string[i];
+      }
 
       encryptedString.push(letter);
     }
